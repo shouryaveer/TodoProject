@@ -20,6 +20,9 @@ def add(request):
         form = NewTaskForm(request.POST)
         if form.is_valid():
             task = form.cleaned_data["task"]
+            if task in request.session["tasks"]:
+                return render(request, "todolist/add.html",
+                        {"form": NewTaskForm()})
             request.session["tasks"] += [task]
             return HttpResponseRedirect(reverse("todo:index"))
         else:
