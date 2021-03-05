@@ -1,0 +1,23 @@
+{% extends "todolist/layout.html" %}
+
+{% block title %}
+    To-Do List
+{% endblock %}
+
+{% block body %}
+    <h1>A To-Do List:</h1>
+    <div class="tasklist">
+        <ul>
+            {% for task in tasks %}
+                <li>{{ task }}</li>
+            {% empty %}
+                <li>--No Tasks added--</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="links">
+        <a href="{% url 'todo:add' %}">Add a Task</a>
+        <p></p>
+        <a href="{% url 'todo:remove' %}">Delete a Task</a>
+    </div>
+{% endblock %}
