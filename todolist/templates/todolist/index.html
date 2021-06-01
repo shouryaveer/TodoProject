@@ -8,8 +8,16 @@
     <h1>A To-Do List:</h1>
     <div class="tasklist">
         <ul>
-            {% for task in tasks %}
-                <li>{{ task }}</li>
+            {% for task in tasks_list %}
+                <a href="{% url 'todo:update' task.id %}">
+                {% if task.is_completed %}
+                <li style="color:blue;">{{ task.title }}</li>
+                {% elif task.priority == 'High' %}
+                <li style="color:red;">{{ task.title }}</li>
+                {% else %}
+                <li style="color: black;">{{ task.title }}</li>
+                {% endif %}
+                </a>
             {% empty %}
                 <li>--No Tasks added--</li>
             {% endfor %}
@@ -18,6 +26,6 @@
     <div class="links">
         <a href="{% url 'todo:add' %}">Add a Task</a>
         <p></p>
-        <a href="{% url 'todo:remove' %}">Delete a Task</a>
+        <a href="{% url 'todo:delete_form' %}">Delete a Task</a>
     </div>
 {% endblock %}
