@@ -10,7 +10,13 @@
         <ul>
             {% for task in tasks_list %}
                 <a href="{% url 'todo:update' task.id %}">
-                <li>{{ task.task }}</li>
+                {% if task.is_completed %}
+                <li style="color:blue;">{{ task.title }}</li>
+                {% elif task.priority == 'High' %}
+                <li style="color:red;">{{ task.title }}</li>
+                {% else %}
+                <li style="color: black;">{{ task.title }}</li>
+                {% endif %}
                 </a>
             {% empty %}
                 <li>--No Tasks added--</li>

@@ -8,8 +8,9 @@
     <h1>Tasks: </h1>
     <form class="forms" action="{% url 'todo:update' task.id %}" method="POST">
         {% csrf_token %}
-        {{ form }}
+        {{ form.as_p }}
         <input type="submit" value="save">
+        <button type="submit" value="Delete"><a href="{% url 'todo:delete_form' %}">Delete</a></button>
     </form>
     <p></p>
     <div class="formlinks">

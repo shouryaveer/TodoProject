@@ -19,21 +19,21 @@ class TasksListView(ListView):
 
 class TasksCreateView(CreateView):
     model = Tasks
-    fields = ['task']
+    fields = ['title', 'description', 'priority']
     template_name = 'todolist/add.html'
     success_url = reverse_lazy('todo:index')
 
 
 class TasksUpdateView(UpdateView):
     model = Tasks
-    fields = ['task']
+    fields = ['title', 'description', 'is_completed', 'priority']
     template_name = 'todolist/update.html'
     success_url = reverse_lazy('todo:index')
     context_object_name = 'task'
 
 class TasksDeleteView(FormView):
     model = Tasks
-    fields = ['task']
+    fields = ['title',]
     form_class = TasksDeleteForm
     template_name = 'todolist/delete_form.html'
     success_url = reverse_lazy('todo:index')
